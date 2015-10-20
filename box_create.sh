@@ -16,8 +16,7 @@ do
     echo "$I) $VALUE";
 done
 
-echo -n "select vm : "
-read VM_NUM
+read -p "select vm : " VM_NUM
 
 if [ $VM_NUM -le $I ]
 then
@@ -25,7 +24,9 @@ then
     echo "selected : $VM_NUM) $VM_NAME"
 
     ## create vagrant box
+    echo "--- start vm packing"
     vagrant package --output $VAGRANT_HOME/box-image/$VM_NAME.box --base $VM_NAME
+    echo "--- end vm packing"
 else
     echo "less than $I"
 fi
